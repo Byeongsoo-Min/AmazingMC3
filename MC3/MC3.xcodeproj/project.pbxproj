@@ -15,6 +15,7 @@
 		8352CA0C287D93430073B007 /* QuizCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352CA0B287D93430073B007 /* QuizCollectionViewController.swift */; };
 		8352CA0E287D93DE0073B007 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352CA0D287D93DE0073B007 /* QuizViewController.swift */; };
 		8352CA11287DA7950073B007 /* QuizAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352CA10287DA7950073B007 /* QuizAnswerCollectionViewCell.swift */; };
+		8352CA13287EF6080073B007 /* SubmitCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352CA12287EF6080073B007 /* SubmitCompleteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		8352CA0B287D93430073B007 /* QuizCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCollectionViewController.swift; sourceTree = "<group>"; };
 		8352CA0D287D93DE0073B007 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		8352CA10287DA7950073B007 /* QuizAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
+		8352CA12287EF6080073B007 /* SubmitCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCompleteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				8352CA0B287D93430073B007 /* QuizCollectionViewController.swift */,
+				8352CA12287EF6080073B007 /* SubmitCompleteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				8352C9F5287D8C0D0073B007 /* AppDelegate.swift in Sources */,
 				8352C9F7287D8C0D0073B007 /* SceneDelegate.swift in Sources */,
 				8352CA11287DA7950073B007 /* QuizAnswerCollectionViewCell.swift in Sources */,
+				8352CA13287EF6080073B007 /* SubmitCompleteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

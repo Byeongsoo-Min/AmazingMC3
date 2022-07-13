@@ -14,12 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+        let mainNavigationController = UINavigationController(rootViewController: QuizViewController())
         //windowscene 의 전체 크기를 받아옴
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         //initalize
         window?.windowScene = windowScene
-        window?.rootViewController = QuizViewController()
+        window?.rootViewController = mainNavigationController
         //- keyWindow로 설정
         //- keyWindow: window가 여러개 존재할 때, 가장 앞쪽에 배치된 window를 `key window`라고 지칭
         //window의 rootViewController를 위에서 세팅해주고 makeKeyAndVisible() 부르면 마침내 지정한 rootViewController가 상호작용을 받는 현재 화면으로 세팅 완료

@@ -12,7 +12,7 @@ class QuizAnswerCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setAnswerButtonView()
+        contentView.addSubview(quizAnswerButtonView)
     }
     
     required init?(coder: NSCoder) {
@@ -21,25 +21,15 @@ class QuizAnswerCollectionViewCell: UICollectionViewCell {
     
     let quizAnswerButtonView: UIButton  =  {
         var quizButton: UIButton = UIButton()
-        quizButton.setTitle("hi", for: .normal)
+        quizButton.backgroundColor = UIColor.brown
         return quizButton
     }()
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        quizAnswerButtonView.frame = contentView.bounds
+    }
     func setAnswerButtonView(){
         backgroundColor = UIColor.red
-        addSubview(quizAnswerButtonView)
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: <#T##String#>, metrics: <#T##[String : Any]?#>, views: <#T##[String : Any]#>))
+        contentView.addSubview(quizAnswerButtonView)
     }
 }
-
-
-//extension QuizAnswerCollectionViewCell{
-//    var quizAnswersDolphin: [String] { return
-//        [
-//        "goodgood",
-//        "nicenice",
-//        "greatgreat",
-//        "thebestthebest"
-//        ]
-//        }
-//}

@@ -19,18 +19,32 @@ class QuizViewController: UIViewController {
             quizImage.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             quizImage.widthAnchor.constraint(equalToConstant: 200),
             quizImage.heightAnchor.constraint(equalToConstant: 200)
+            // autolayout
         ])
         view.addSubview(quizText)
         view.addSubview(quizAnswerCollection)
         NSLayoutConstraint.activate([
             quizAnswerCollection.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quizAnswerCollection.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
-            quizAnswerCollection.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
-            quizAnswerCollection.heightAnchor.constraint(equalToConstant: 40)
-            
+            quizAnswerCollection.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
+            quizAnswerCollection.widthAnchor.constraint(equalToConstant: view.frame.width),
+            quizAnswerCollection.heightAnchor.constraint(equalToConstant: 250)
+            // auto layout
         ])
         quizAnswerCollection.delegate = self
+        // delegate 연결
         quizAnswerCollection.dataSource = self
+        // datasource 연결
+        quizAnswerCollection.contentInset = UIEdgeInsets(top: 15, left: 30, bottom: 0, right: 30)
+        // padding
+        view.addSubview(quizSubmit)
+        NSLayoutConstraint.activate([
+            quizSubmit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            quizSubmit.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            quizSubmit.widthAnchor.constraint(equalToConstant: view.frame.width - 60),
+            quizSubmit.heightAnchor.constraint(equalToConstant: 50)
+        ])
+//        quizSubmit.frame.width = view.frame.width - 40
+//        quizSubmit.frame.height = 40
     }
     let quizAnswersDolphin: [String] =
         [
@@ -39,6 +53,11 @@ class QuizViewController: UIViewController {
         "greatgreat",
         "thebestthebest"
         ]
+    @objc func buttonTapped(){
+        print("buttonTapped")
+        let detailController = SubmitCompleteViewController()
+        navigationController?.pushViewController(detailController, animated: true)
+    }
     private let quizImage: UIImageView = {
         var quizImage = UIImage(named: "Dolphin")
         // Image 생성 (현재 더미)
@@ -49,7 +68,16 @@ class QuizViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-
+    private let quizSubmit: UIButton = {
+        let quizSubmit = UIButton()
+        quizSubmit.setTitle("정답 확인하기", for: .normal)
+        quizSubmit.titleLabel?.textColor = UIColor.white
+        quizSubmit.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        quizSubmit.translatesAutoresizingMaskIntoConstraints = false
+        quizSubmit.backgroundColor = UIColor.brown
+        quizSubmit.addTarget(self, action: #selector(QuizViewController.buttonTapped), for: .touchUpInside)
+        return quizSubmit
+    }()
     lazy var quizText: UITextView = {
         var quizText: UITextView = UITextView(frame: CGRect(x: 20, y: 350, width: self.view.bounds.width - 40, height: 100))
         // TextView 객체 생성
@@ -77,19 +105,15 @@ class QuizViewController: UIViewController {
     private let quizAnswerCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(QuizAnswerCollectionViewCell.self, forCellWithReuseIdentifier: QuizAnswerCollectionViewCell.identifier)
-        collection.backgroundColor = .black
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
 }
 
-extension QuizViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
+extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,8 +122,9 @@ extension QuizViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         cell.quizAnswerButtonView.setTitle(quizAnswersDolphin[indexPath.row], for: .normal)
         cell.quizAnswerButtonView.titleLabel?.textColor = .white
-        cell.quizAnswerButtonView.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        cell.quizAnswerButtonView.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         cell.quizAnswerButtonView.layer.borderColor = UIColor.white.cgColor
+        cell.quizAnswerButtonView.layer.cornerRadius = 20
         return cell
     }
     
@@ -107,10 +132,13 @@ extension QuizViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return true
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 5
+            return 50
         }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: view.frame.width, height: 200)
+        
+        let spacing: CGFloat = 20
+            return CGSize(width: (collectionView.bounds.width / 2 - spacing * 2), height: 70)
         }
     
 }
+
